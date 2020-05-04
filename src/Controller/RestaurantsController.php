@@ -74,6 +74,20 @@ class RestaurantsController extends AbstractController
     {
         $restaurants = $this->restaurantRepository->findAll();
 
-        return new JsonResponse($restaurants);
+        return new JsonResponse($restaurants,200,[
+            "Access-Control-Allow-Origin" => "*"
+        ]);
+    }
+    /**
+     * @Route("/restaurants/{id}",methods={"GET"})
+     */
+    public function findByID(int $id) : Response
+    {
+        $restaurant = $this->restaurantRepository->find($id);
+
+        return new JsonResponse($restaurant,200,[
+            "Access-Control-Allow-Origin" => "*"
+        ]);
+
     }
 }
