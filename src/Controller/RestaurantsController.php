@@ -18,17 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RestaurantsController extends AbstractController
 {
-    /**
-     * @var EntityManagerInterface
-     */
+
     private $entityManager;
-    /**
-     * @var CategoryRepository
-     */
+
     private $categoryRepository;
-    /**
-     * @var RestaurantRepository
-     */
+
     private $restaurantRepository;
 
     /**
@@ -81,7 +75,7 @@ class RestaurantsController extends AbstractController
     /**
      * @Route("/restaurants/{id}",methods={"GET"})
      */
-    public function findByID(int $id) : Response
+    public function findById(int $id) : Response
     {
         $restaurant = $this->restaurantRepository->find($id);
 
