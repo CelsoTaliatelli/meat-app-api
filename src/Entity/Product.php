@@ -29,7 +29,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image_path;
+    private $imagePath;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=0)
@@ -37,9 +37,16 @@ class Product
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $restaurant_id;
+    private $restaurant;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProductCategory")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $productCategory;
 
     public function getId(): ?int
     {
@@ -72,12 +79,12 @@ class Product
 
     public function getImagePath(): ?string
     {
-        return $this->image_path;
+        return $this->imagePath;
     }
 
-    public function setImagePath(?string $image_path): self
+    public function setImagePath(?string $imagePath): self
     {
-        $this->image_path = $image_path;
+        $this->imagePath = $imagePath;
 
         return $this;
     }
@@ -94,14 +101,14 @@ class Product
         return $this;
     }
 
-    public function getRestaurantId(): ?int
+    public function getRestaurant(): ?int
     {
-        return $this->restaurant_id;
+        return $this->restaurant;
     }
 
-    public function setRestaurantId(int $restaurant_id): self
+    public function setRestaurant(int $restaurant): self
     {
-        $this->restaurant_id = $restaurant_id;
+        $this->restaurant = $restaurant;
 
         return $this;
     }
